@@ -1,6 +1,7 @@
 # DevMetrics — GitHub Analytics Dashboard
 
-![Status](https://img.shields.io/badge/status-em%20constru%C3%A7%C3%A3o-orange)
+![Status](https://img.shields.io/badge/M1-funcionando%20(5%2F5%20testes)-brightgreen)
+![CI](https://img.shields.io/badge/CI-test%20%2B%20license%20check-blue)
 ![Node](https://img.shields.io/badge/Node-%3E%3D18-green?logo=node.js&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
@@ -11,11 +12,26 @@ pure-SVG charts (bars/line/donut) + dynamic badges for READMEs.
 > 🇧🇷 Dashboard de analytics do GitHub: API que agrega seus repos (linguagens, stars,
 > commits/semana, com cache) + dashboard com charts SVG puro + badges dinâmicos.
 
-## Features (roadmap)
+## Features
 
-- [ ] **M1a** — Aggregation API + cache
-- [ ] **M1b** — Dashboard with SVG charts + dynamic cards
-- [ ] **M2** — Repo comparisons, commit heatmap, dynamic README badge
+- [x] **M1a** — Aggregation API (resumo/linguagens/top) com cache TTL + `fetchImpl` injetável (5/5 tests)
+- [x] **M1b** — Dashboard SVG puro (barras de linguagem, top stars) + **badges dinâmicos**: `/badge/<user>/repos` e `/badge/<user>/stars`
+- [ ] **M2** — Repo comparisons, commit heatmap
+
+## Quick start
+
+```bash
+docker compose up   # painel em http://localhost:3600
+```
+
+## Badge dinâmico (cole no seu README!)
+
+```markdown
+![repos](https://seu-host:3600/badge/FrancosCorporation/repos)
+![stars](https://seu-host:3600/badge/FrancosCorporation/stars)
+```
+
+Live agora contra a conta real: 72 repos / 66 públicos agregados com cache de 5 min.
 
 ## Built with
 
