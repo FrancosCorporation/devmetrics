@@ -1,12 +1,19 @@
 {
-  "name": "devmetrics",
-  "version": "0.1.0",
-  "description": "Dashboard de analytics do GitHub: API de agregacao com cache + charts SVG puro + badges dinamicos",
-  "main": "server.js",
-  "type": "module",
-  "license": "MIT",
-  "author": "Rodolfo Franco (FrancosCorporation)",
-  "scripts": { "start": "node server.js", "test": "NODE_ENV=test node --test test/agregador-test.mjs" },
-  "dependencies": { "express": "^4.21.0" },
-  "engines": { "node": ">=18" }
+ "name": "devmetrics",
+ "version": "0.1.0",
+ "description": "Dashboard de analytics do GitHub: API de agregacao com cache + charts SVG puro + badges dinamicos",
+ "main": "server.js",
+ "type": "module",
+ "license": "MIT",
+ "author": "Rodolfo Franco (FrancosCorporation)",
+ "scripts": {
+  "start": "node server.js",
+  "test": "NODE_ENV=test node --test test/agregador-test.mjs && NODE_ENV=test node --test test/m2-test.mjs"
+ },
+ "dependencies": {
+  "express": "^4.21.0"
+ },
+ "engines": {
+  "node": ">=18"
+ }
 }

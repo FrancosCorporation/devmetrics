@@ -1,6 +1,6 @@
 # DevMetrics — GitHub Analytics Dashboard
 
-![Status](https://img.shields.io/badge/M1-funcionando%20(5%2F5%20testes)-brightgreen)
+![Status](https://img.shields.io/badge/M1%20%2B%20M2-funcionando%20(9%2F9%20testes)-brightgreen)
 ![CI](https://img.shields.io/badge/CI-test%20%2B%20license%20check-blue)
 ![Node](https://img.shields.io/badge/Node-%3E%3D18-green?logo=node.js&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -16,7 +16,8 @@ pure-SVG charts (bars/line/donut) + dynamic badges for READMEs.
 
 - [x] **M1a** — Aggregation API (resumo/linguagens/top) com cache TTL + `fetchImpl` injetável (5/5 tests)
 - [x] **M1b** — Dashboard SVG puro (barras de linguagem, top stars) + **badges dinâmicos**: `/badge/<user>/repos` e `/badge/<user>/stars`
-- [ ] **M2** — Repo comparisons, commit heatmap
+- [x] **M2** — **Heatmap de commits** (52 semanas x 7 dias, paleta GitHub) + **comparativo entre
+      repos** (tabela markdown gerada!) + tratamento de erro de repo inexistente — 9/9 testes
 
 ## Quick start
 
