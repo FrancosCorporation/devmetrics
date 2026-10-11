@@ -9,14 +9,18 @@ export function criarAgregadorM2(token = '', ttl = 5 * 60 * 1000, fetchImpl = fe
 
     // heatmap de commits: 52 semanas x 7 dias (como o gráfico de contribuições do GitHub)
     async heatmap(dono, repositorio, ano = new Date().getFullYear()) {
-      const commits = await agg.buscar(`https://api.github.com/repos/${dono}/${repositorio}/commits?per_page=100&since=${ano}-01-01T00:00:00Z`);
+      const anoInformado = Number(ano);
+      const anoSeguro = Number.isInteger(anoInformado) && anoInformado >= 1970 && anoInformado <= new Date().getFullYear() + 1
+        ? anoInformado
+        : new Date().getFullYear();
+      const commits = await agg.buscar(`https://api.github.com/repos/${encodeURIComponent(dono)}/${encodeURIComponent(repositorio)}/commits?per_page=100&since=${anoSeguro}-01-01T00:00:00Z`);
       // agrupa por data (YYYY-MM-DD)
       const porDia = {};
       for (const c of commits) {
         const data = (c.commit?.author?.date || '').slice(0, 10);
         if (data) porDia[data] = (porDia[data] || 0) + 1;
       }
-      return { dono, repositorio, ano, porDia, totalCommits: Object.values(porDia).reduce((t, v) => t + v, 0) };
+      return { dono, repositorio, ano: anoSeguro, porDia, totalCommits: Object.values(porDia).reduce((t, v) => t + v, 0) };
     },
 
     // heatmap SVG: 52 colunas x 7 linhas, cor pela intensidade (0-4 níveis)
@@ -46,7 +50,7 @@ export function criarAgregadorM2(token = '', ttl = 5 * 60 * 1000, fetchImpl = fe
       const linhas = [];
       for (const nome of nomesRepos) {
         try {
-          const r = await agg.buscar(`https://api.github.com/repos/${dono}/${nome}`);
+          const r = await agg.buscar(`https://api.github.com/repos/${encodeURIComponent(dono)}/${encodeURIComponent(nome)}`);
           linhas.push({ nome: r.name, stars: r.stargazers_count, forks: r.forks_count, linguagem: r.language || '—', issues: r.open_issues_count, atualizado: (r.pushed_at || '').slice(0, 10) });
         } catch {
           linhas.push({ nome, erro: 'indisponível' });

@@ -400,3 +400,18 @@ node --check server.js src/agregador.js
 
 *Fim do plano. Gerado por leitura direta do código em 2026-10-02. Nenhum item já estava corrigido*
 *— todos apontam para defeitos ainda presentes.*
+
+---
+
+## Registro de execução — 2026-10-11
+
+- `SEC-01`: a interface foi movida para arquivos separados e agora monta métricas, tabela, links e gráficos com DOM/`textContent`; URLs externas precisam ser HTTPS em `github.com`.
+- `SEC-02` e `SEC-04`: o gerador SVG escapa texto XML, remove controles inválidos, limita rótulos e aceita somente cores hexadecimais válidas.
+- `SEC-03`: o servidor valida o formato do nome antes de consultar o GitHub; chamadas de owner/repositório usam `encodeURIComponent`.
+- `BUG-01`: `n` do top é limitado a 1–50 também na camada de agregação.
+- `BUG-03`: produção exige `GITHUB_TOKEN`; Compose exige configuração e a imagem executa como usuário sem privilégios.
+- `BUG-04`: usuário inexistente retorna 404, cota retorna 429 com `Retry-After`, outros erros do GitHub não são cacheados.
+- `IMP-01`, `IMP-03` e `IMP-02`: API JSON e badges compartilham o TTL de 5 minutos; o cache usa ETag em revalidações; SVG declara UTF-8.
+- `DEVOPS-01`: rotas de API e badge compartilham limite de 60 solicitações por minuto por origem; cache normaliza maiúsculas/minúsculas do caminho.
+- `DOC-01` e `DOC-02`: README explica token, cota e permissões; `SECURITY.md` descreve o risco de dado externo.
+- `TEST-01` não recebeu novos casos, e nenhum teste foi executado. A validação desta rodada será estática (`node --check`, `git diff --check` e busca de sinks HTML dinâmicos), conforme a restrição da execução.

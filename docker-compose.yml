@@ -2,7 +2,9 @@ services:
   devmetrics:
     build: .
     ports:
-      - "3600:3600"
+      - "127.0.0.1:3600:3600"
     environment:
-      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:?configure GITHUB_TOKEN in .env}
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
