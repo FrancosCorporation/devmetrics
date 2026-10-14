@@ -415,3 +415,7 @@ node --check server.js src/agregador.js
 - `DEVOPS-01`: rotas de API e badge compartilham limite de 60 solicitações por minuto por origem; cache normaliza maiúsculas/minúsculas do caminho.
 - `DOC-01` e `DOC-02`: README explica token, cota e permissões; `SECURITY.md` descreve o risco de dado externo.
 - `TEST-01` não recebeu novos casos, e nenhum teste foi executado. A validação desta rodada será estática (`node --check`, `git diff --check` e busca de sinks HTML dinâmicos), conforme a restrição da execução.
+
+## Registro de execução — 2026-10-14
+
+- **DEVOPS-02:** CI fixada (Ubuntu 24.04, Actions v7 por SHA, Node 22/24, `npm ci`, gate de audit). Criados `plan.md`/`resumo.md`.
